@@ -1,0 +1,13 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "strict-type-predicates": false,
+    "no-console": false,
+    "ordered-imports": false,
+    "quotemark": [true, "single"],
+    "indent": false
+  },
+  "rulesDirectory": []
+}
