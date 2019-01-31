@@ -29,8 +29,8 @@ export class MainRoute extends React.Component<IProps> {
       <div>
         <Form />
         <ul>
-          {this.props.dataStorage.todos.map(item => (
-            <Todo key={item.id} model={item} />
+          {this.props.dataStorage.items.map(item => (
+            <li key={item.id} ><Todo model={item} /></li>
           ))}
         </ul>
       </div>

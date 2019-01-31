@@ -1,7 +1,6 @@
 import { Service, Inject } from 'typedi';
 import { plainToClass, classToClass } from 'class-transformer';
 import { DataStorage } from '../storage/DataStorage';
-import * as fetch from 'isomorphic-fetch';
 import { action } from 'mobx';
 import { TodoModel } from '../models/TodoModel';
 const responseMock = {
@@ -26,19 +25,19 @@ export class TodoService {
   @action
   public load = async () => {
     await new Promise(resolve => setTimeout(resolve, 300));
-    this.dataStorage.todos = plainToClass(TodoModel, responseMock.items);
+    this.dataStorage.items = plainToClass(TodoModel, responseMock.items);
   };
 
   @action
   public save(todo: TodoModel): void {
     if (todo.id) {
-      const idx = this.dataStorage.todos.findIndex(item => todo.id === item.id);
-      this.dataStorage.todos[idx] = classToClass(todo);
+      const idx = this.dataStorage.items.findIndex(item => todo.id === item.id);
+      this.dataStorage.items[idx] = classToClass(todo);
     } else {
-      const todos = this.dataStorage.todos.slice();
+      const items = this.dataStorage.items.slice();
       todo.id = Math.floor(Math.random() * Math.floor(100000));
-      todos.push(todo);
-      this.dataStorage.todos = todos;
+      items.push(todo);
+      this.dataStorage.items = items;
     }
     this.clearTodo();
   }
