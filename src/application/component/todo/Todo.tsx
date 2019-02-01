@@ -19,10 +19,14 @@ export class Todo extends React.Component<IProps> {
         <input
           type='checkbox'
           checked={model.isCompleted}
-          onChange={e => model.set('isCompleted', e.target.checked)}
+          onChange={e => (model.isCompleted = e.target.checked)}
         />
-        <h4>{model.text}</h4>
-        <button type='button' onClick={() => todoService.edit(model)}>Edit</button>
+        <h4>
+          {model.text}
+        </h4>
+        <button type='button' onClick={() => todoService.edit(model)}>
+          Edit
+        </button>
       </>
     );
   }

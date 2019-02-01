@@ -14,7 +14,7 @@ export class TextField extends React.Component<IProps> {
       <textarea
         name={name}
         value={(model as any)[name]}
-        onChange={e => model.set(name as any, e.target.value)}
+        onChange={e => ((model as any)[name] = e.target.value)}
       />
     );
   }
