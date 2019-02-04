@@ -1,5 +1,5 @@
+import 'reflect-metadata';
 import { observable, decorate } from 'mobx';
-
 export const SYNC_PARAM_KEY = 'sync:params:';
 
 export function sync(target: any, propertyName: string) {
@@ -9,10 +9,12 @@ export function sync(target: any, propertyName: string) {
       return this[name];
     },
     set(value: any) {
-      localStorage.setItem(
-        SYNC_PARAM_KEY + propertyName,
-        JSON.stringify(value)
-      );
+      if (global.IS_BROWSER) {
+        localStorage.setItem(
+          SYNC_PARAM_KEY + propertyName,
+          JSON.stringify(value)
+        );
+      }
       this[name] = value;
     }
   });
@@ -22,7 +24,8 @@ export function sync(target: any, propertyName: string) {
   decorate(target.constructor, decorators);
 
   const existingParams: any[] =
-    Reflect.getOwnMetadata(SYNC_PARAM_KEY, target.constructor, propertyName) || [];
+    Reflect.getOwnMetadata(SYNC_PARAM_KEY, target.constructor, propertyName) ||
+    [];
   existingParams.push(propertyName);
   Reflect.defineMetadata(SYNC_PARAM_KEY, existingParams, target.constructor);
 }
