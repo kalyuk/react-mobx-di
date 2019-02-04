@@ -3,6 +3,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "lib": ["dom", "es2015", "esnext"],
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "module": "commonjs",

@@ -8,6 +8,7 @@ import { Container } from 'typedi';
 import '../application';
 import { routes } from '../application/route';
 
+Container.get('LocalstorageService');
 hydrate(
   <Provider container={Container}>
     <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
